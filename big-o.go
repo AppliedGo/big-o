@@ -131,7 +131,7 @@ The simplified term `n^2` stands for a whole class of terms, so let's give it a 
 A function that needs roughly `n^2` units of time to process `n` input items has a **time complexity of `O(n^2)`**.
 - - -
 
-In general, we can say that
+In general, we can say that -
 
 **A Big-O function is a mathematical term that gives a *rough estimation* of how the speed of an algorithm changes with the size of the input data.**
 
@@ -139,9 +139,11 @@ Now we have a means to categorize time complexity into classes. Here are the mos
 
 ### O(1) - constant time
 
-**Characteristic:** The code always needs the same time, no matter how large the input set is.
+**Characteristic: Instant delivery.**
 
-**Curve:**
+The code always needs the same time, no matter how large the input set is.
+
+**Graph:**
 
 ![O(1)](constant.png)
 
@@ -150,9 +152,11 @@ Now we have a means to categorize time complexity into classes. Here are the mos
 
 ### O(log(n)) - logarithmic time
 
-**Characteristic:** The time the code needs to process `n` elements raises much slower than `n` for large values of `n`.
+**Characteristic: The more data, the better.**
 
-**Curve:**
+The time the code needs to process `n` elements raises much slower than `n` for large values of `n`.
+
+**Graph:**
 
 ![O(log(n))](logarithmic.png)
 
@@ -161,9 +165,11 @@ Now we have a means to categorize time complexity into classes. Here are the mos
 
 ### O(n) - linear time
 
-**Characteristic:** Time needed for processing `n` element grows linearly with `n`.
+**Characteristic: One at a time.**
 
-**Curve:**
+Time needed for processing `n` element grows linearly with `n`.
+
+**Graph:**
 
 ![O(n)](linear.png)
 
@@ -172,11 +178,13 @@ Now we have a means to categorize time complexity into classes. Here are the mos
 
 ### O(n*log(n)) - linearithmic time
 
-Whoa, who invents these names?! "Linearithmic" is an artificial blend of "linear" and "logarithmic", in the spirit of ["Brangelina"](https://en.wiktionary.org/wiki/Brangelina). (Bonus question: Which came first?)
+Whoa, who invents these names?! "Linearithmic" is an artificial blend of "linear" and "logarithmic", similar to ["Brangelina"](https://en.wiktionary.org/wiki/Brangelina). (Bonus question: Which came first?)
 
-**Characteristic:** Somewhere between `O(n)` and `O(n^2)`. Looks slightly like a flat `O(n^2)` curve for small values of `n`, and turns into an almost linear curve for large values of `n`.
+**Characteristic: Almost, but not quite, linear.**
 
-**Curve:**
+Somewhere between `O(n)` and `O(n^2)`. Looks slightly like a flat `O(n^2)` curve for small values of `n`, and turns into an almost linear curve for large values of `n`.
+
+**Graph:**
 
 ![O(n*log(n))](linearithmic.png)
 
@@ -187,15 +195,19 @@ Whoa, who invents these names?! "Linearithmic" is an artificial blend of "linear
 
 For a given `m > 0`.
 
-Our `O(n^2)` problem belongs this class. This specific case is also called "quadratic time".
+**Characteristic: "Easy, fast, and practical." (But quickly getting slow.)**
+
+Processing time raises fast. For `O(n^2)`, when input size doubles, execution time quadruples. For `O(n^3)`, double input size means eightfold execution time. And so on.
+
+Here is where the danger zone comes into sight. With increasing `n`, polynomial algorithms quickly become slow.
+
+Still, [Cobham's thesis](https://en.wikipedia.org/wiki/Cobham%27s_thesis) considers polynomial problems as *"easy, fast, and practical".* Which means there are worse time complexities on the horizon.
+
+Our `O(n^2)` problem from above belongs this class. This specific case is also called "quadratic time".
 
 (Nitpicking: `O(n)` would also belong to the polynomial class, since `n` is the same as `n^1` and therefore a polynomial term, but due to its special "linear" nature it defines a separate class.)
 
-**Characteristic:** Processing time raises fast. For `O(n^2)`, when input size doubles, execution time quadruples.
-
-Here is where the danger zone comes into sight. With increasing `n`, polynomial algorithms get slow fast. Still, [Cobham's thesis](https://en.wikipedia.org/wiki/Cobham%27s_thesis) considers polynomial problems as *"easy, fast, and practical".* Which means there are worse time complexities on the horizon.
-
-**Curve:**
+**Graph:**
 
 ![O(n^m)](polynomial.png)
 
@@ -204,14 +216,17 @@ Here is where the danger zone comes into sight. With increasing `n`, polynomial 
 
 ### O(2^n) - exponential time
 
-**Characteristic:** **Here be dragons.** Even for moderate values of `n`, processing time goes through the roof.
+**Characteristic:** **Here be dragons.**
 
-**Curve:**
+Even for moderate values of `n`, processing time goes through the roof.
+
+**Graph:**
 
 ![O(2^n)](exponential.png)
 
-**Example:** The famous Traveling Salesman Problem: Find the shortest route between `n` towns.
+**Example:** The famous [Traveling Salesman Problem](https://en.wikipedia.org/wiki/Travelling_salesman_problem): Find the shortest route between `n` towns. There are different approaches to this problem, but none of them belongs to a complexity class below `O(2^n)`.
 
+### Comparison
 
 The different characteristics of these time complexity classes become apparent when we put all those functions into one figure:
 
@@ -234,18 +249,18 @@ Looking at some of the curves, one question arises: Can we improve a given code,
 
 Let me give you a very practical answer here:
 
-If the algorithm you strive to improve is one of the well-known, well-researched algorithms, the chances to find an equivalent algorithm in a better complexity class is roughly zero. If you do find one, you are the hero of the day.
+If the algorithm you strive to improve is one of the well-known, well-researched algorithms, the chances to find an equivalent, yet unknown, algorithm in a better complexity class is roughly zero. If you do find one, you are the hero of the day.
 
-If you are looking at some piece of lousy home-grown code, hacked together quickly while recovering from a severe hangover, then your chances aren't that bad. Read on...
+If, on the other hand, you are looking at some piece of lousy home-grown code, hacked together quickly while recovering from a severe hangover, then your chances aren't that bad. Read on...
 
 
 ### Pre-process the input data
 
 In some cases, the time complexity can be improved by re-arranging the input data.
 
-For example, f you need to search through a list repeatedly (and much more often than adding something to this list), it will pay off to sort this list before searching it. Sure, sorting needs time, but you would have to do it only once to speed up those, say, thousands of searches that occur afterwards.
+For example, if you need to search through a list repeatedly (and much more often than adding something to this list), it will pay off to sort this list before searching it. A sorted list can be searched in O(log(n)) time using a binary search. Sure, sorting needs time, but you would have to do it only once to speed up those, say, thousands of searches that occur afterwards.
 
-A good sort algorithm takes O(n*log(n)) time but reduces each of the subsequent searches from O(n) to O(log(n)). Or all `n` of them from `O(n^2)` to `O(n*log(n)`. Big win!
+A good sort algorithm takes O(n*log(n)) time but reduces the time for each of the subsequent searches from O(n) to O(log(n)). Or for all `n` searches from `O(n^2)` to `O(n*log(n)`. Big win!
 
 
 ### Change your data structure
@@ -261,39 +276,75 @@ If you insert new data very frequently, better turn this list into a balanced tr
 
 So far we discussed only time complexity, but the same problem (and the same complexity classes) exists for memory consumption as well. Why not trading in one for the other?
 
+One technique to exploit this is called "memoization".
+
+The idea behind memoization is: If a function is repeatedly called for the same input that is hard to calculate, store the results in memory and reuse them instead of re-calculating the same over and over.
+
+As an example, calculating the factorial of `n` requires `n` multiplications.
+
+```go
+func fac(n int) int {
+	if n == 0 {
+		return 1
+	} else {
+		return n * fac(n-1)
+	}
+}
+```
+
+This wrapper function stores all results in a map, and if a given `n` has already been calculated, it returns the result from the map; otherwise it calls `fac(n)`.
+
+```go
+func facm(n int, m map[int]int) int {
+	r, ok := m[n]
+	if ok {
+		return r
+	} else {
+		r = fac(n)
+		m[n] = r
+		return r
+	}
+}
+```
+
+(Playground code [here](https://play.golang.org/p/wx1mIrbx8U).)
+
+The memoized function starts with the same time complexity as the original faculty function. Over time, however, most calls to `facm()` only require one map access (and although the Go Language Specification makes no performance guarantees for map access, we can safely assume that it is better than `O(2^n)`).package big-o
+
+
+### Use approximations
+
+Optimization problems like the Travelling Salesman problem (let's call it "TSP" henceforth) may have just one exact solution, but multiple *almost best* solutions. These near-optimal results can often be found by algorithms in a better O(n) class.
+
+The trick is to not find and compare *all* possible results but to find optimal results for small, disjunct subsets and combining these results into one.
+
+A copule of different heuristics are available.
+
+As an example, in the [Nearest Neighbour](https://en.wikipedia.org/wiki/Nearest_neighbour_algorithm) algorithm, the salesperson, when arriving in one of the cities that are on the agenda, simply chooses the nearest unvisited city as the next destination, until all cities are visited.
+
+On average, the path resulting from this strategy is 25% longer than the result from an exact algorithm, while the Nearest Neighbor algorithm only needs `O(n^2)` time.
+
+Another strategy called [Ant Colony Optimization](https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms) simulates the behavior of an ant colony. Ants establish routes between their colony and a food source by leaving pheromones (sort of an "ant perfume") on their trail. These pheromones evaporate over time, so after the ants have walked back and forth various paths to their food source for some time, the shortest path to the food source (that the ants traverse more often as they need less time than for a longer path) contains more pheromones than a longer path. The ants are more likely to follow the path with the most intense scent, and eventually all of them follow the same path - the shortest one between all the paths they tested.
+
+Applying this strategy to TSP allows finding a near-optimal route in `O()`.
+
+
+
 ## Can concurrency change the complexity class?
 
-##
+Maybe one question has bubbled up while reading through this article: Can a parallel version of an algorithm belong to a better complexity class than the original serial algorithm?
 
-## The code
-*/
+For example, could the TSP be solved in `O(n^2)` rather than in `O(n^2)` (while still using an exact algorithm and no heuristics)?
 
-// ## Imports and globals
-package main
+Unfortunately, no.
 
-func main() {}
+To justify this answer we do not even dive into complexity theory. We just need to look at the hardware: Two CPU cores can provide double speed at most, three can provide triple speed, and so forth. Adding CPU cores therefore speeds up execution only by a *constant factor*, and as we have seen in the introduction, constant factors are not relevant when talking about time complexity classes.
 
-/*
-## How to get and run the code
+## Conclusion
 
-Step 1: `go get` the code. Note the `-d` flag that prevents auto-installing
-the binary into `$GOPATH/bin`.
+Time complexity classes
 
-    go get -d github.com/appliedgo/TODO:
-
-Step 2: `cd` to the source code directory.
-
-    cd $GOPATH/src/github.com/appliedgo/TODO:
-
-Step 3. Run the binary.
-
-    go run TODO:.go
-
-
-## Odds and ends
-## Some remarks
-## Tips
-## Links
+## Links (as far as not already appearing in the text)
 
 [Wikipedia: Time complexity](https://en.wikipedia.org/wiki/Time_complexity)
 
