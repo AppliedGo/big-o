@@ -312,37 +312,31 @@ func facm(n int, m map[int]int) int {
 The memoized function starts with the same time complexity as the original faculty function. Over time, however, most calls to `facm()` only require one map access (and although the Go Language Specification makes no performance guarantees for map access, we can safely assume that it is better than `O(2^n)`).package big-o
 
 
-### Use approximations
+### Use approximations and heuristics
 
-Optimization problems like the Travelling Salesman problem (let's call it "TSP" henceforth) may have just one exact solution, but multiple *almost best* solutions. These near-optimal results can often be found by algorithms in a better O(n) class.
+Optimization problems like the Travelling Salesman problem (let's call it "TSP" henceforth) may have just one *exact* solution, but multiple *near-optimal* solutions. Algorithms that find near-optimal solutions by approximation and heuristics usually belong to a better O(n) class than the exact algorithm.
 
-The trick is to not find and compare *all* possible results but to find optimal results for small, disjunct subsets and combining these results into one.
-
-A copule of different heuristics are available.
-
-As an example, in the [Nearest Neighbour](https://en.wikipedia.org/wiki/Nearest_neighbour_algorithm) algorithm, the salesperson, when arriving in one of the cities that are on the agenda, simply chooses the nearest unvisited city as the next destination, until all cities are visited.
+As an example, in the [nearest neighbour](https://en.wikipedia.org/wiki/Nearest_neighbour_algorithm) algorithm, the salesperson, when arriving in one of the cities that are on the agenda, simply chooses the nearest unvisited city as the next destination, until all cities are visited.
 
 On average, the path resulting from this strategy is 25% longer than the result from an exact algorithm, while the Nearest Neighbor algorithm only needs `O(n^2)` time.
 
-Another strategy called [Ant Colony Optimization](https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms) simulates the behavior of an ant colony. Ants establish routes between their colony and a food source by leaving pheromones (sort of an "ant perfume") on their trail. These pheromones evaporate over time, so after the ants have walked back and forth various paths to their food source for some time, the shortest path to the food source (that the ants traverse more often as they need less time than for a longer path) contains more pheromones than a longer path. The ants are more likely to follow the path with the most intense scent, and eventually all of them follow the same path - the shortest one between all the paths they tested.
-
-Applying this strategy to TSP allows finding a near-optimal route in `O()`.
+Other strategies include [ant colony optimization](https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms), [simulated annealing](https://en.wikipedia.org/wiki/Simulated_annealing), and [genetic algorithms](https://en.wikipedia.org/wiki/Genetic_algorithm).
 
 
 
-## Can concurrency change the complexity class?
+## Can parallel execution achieve a better complexity class?
 
-Maybe one question has bubbled up while reading through this article: Can a parallel version of an algorithm belong to a better complexity class than the original serial algorithm?
+Given that goroutines can execute in parallel (provided that more than one (physical) CPU core is available), a question comes to mind: Can a parallel version of an algorithm belong to a better complexity class than the original serial algorithm?
 
 For example, could the TSP be solved in `O(n^2)` rather than in `O(n^2)` (while still using an exact algorithm and no heuristics)?
 
 Unfortunately, no.
 
-To justify this answer we do not even dive into complexity theory. We just need to look at the hardware: Two CPU cores can provide double speed at most, three can provide triple speed, and so forth. Adding CPU cores therefore speeds up execution only by a *constant factor*, and as we have seen in the introduction, constant factors are not relevant when talking about time complexity classes.
+To explain this, we do not even dive into complexity theory. We just need to look at the hardware: Two CPU cores can provide double speed at most, three can provide triple speed, and so forth. Adding CPU cores therefore speeds up execution only by a *constant factor*, and as we have seen in the introduction, constant factors are not relevant when talking about time complexity classes.
 
 ## Conclusion
 
-Time complexity classes
+Time complexity and Big-O classes might seem tedious stuff but are enormously useful for predicting how code behaves when the input size grows. There is an abyss of theory behind all this, but this basic set of complexity classes should suffice for everyday use.
 
 ## Links (as far as not already appearing in the text)
 
