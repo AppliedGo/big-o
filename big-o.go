@@ -248,7 +248,7 @@ Imagine we can speed up the O(`n^2)` algorithm by any constant factor `m`. The c
 
 The black line is the polynomial function `n^2`, the green line is the exponential function `2^n`, and the red and blue ones are the exponential function multiplied by a factor of 0.5 and 0.1, respectively. The blue one looks much better than the polynomial curve. So can `O(2^n)` beat `O(n^2)` just by a linear speedup?
 
-Yes and no. Remember we want to find out how an algorithm behaves when the input gets larger and larger. So let's scale the graph to see how the curves behave for larger values of n:
+Yes and no. For small values of `n` this can indeed happen. However, remember that we want to find out how an algorithm behaves when the input gets larger and larger. So let's scale the graph to see how the curves behave for larger values of n:
 
 ![n^2 vs 2^n scaled up](npow2vs2pown_scaled.png)
 
