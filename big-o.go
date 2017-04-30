@@ -240,6 +240,21 @@ The graphs of `O(n^2)` and `O(2^n)` look as if they move very close together; ho
 
 ![Complexity graphs with x axis scaled to 0-200](complexitygraphs_scaled.png)
 
+I know what you are thinking: This looks just like the difference between the graphs of `4*n^2` and `n^2` - I said that difference is irrelevant, and now with this almost identical graph I claim that the difference matters. Let me show the point.
+
+Imagine we can speed up the O(`n^2)` algorithm by any constant factor `m`. The curve will get flatter and flatter with increasing values of m, as the following graph demonstrates.
+
+![n^2 vs 2^n](npow2vs2pown.png)
+
+The black line is the polynomial function `n^2`, the green line is the exponential function `2^n`, and the red and blue ones are the exponential function multiplied by a factor of 0.5 and 0.1, respectively. The blue one looks much better than the polynomial curve. So can `O(2^n)` beat `O(n^2)` just by a linear speedup?
+
+Yes and no. Remember we want to find out how an algorithm behaves when the input gets larger and larger. So let's scale the graph to see how the curves behave for larger values of n:
+
+![n^2 vs 2^n scaled up](npow2vs2pown_scaled.png)
+
+Now even the "flat" blue curve crosses the black one! Try this at home with even tinier values - at some `n`, the exponential curve will cross the polynomial one and increase much faster than the polynomial curve ever can. The difference between polynomial and exponential is indeed fundamental. (This applies to any pair of complexity classes.)
+
+
 ## Improving O(n)
 
 Looking at some of the curves, one question arises: Can we improve a given code, mabye even shift it into a faster Big-O class?
@@ -249,7 +264,7 @@ Looking at some of the curves, one question arises: Can we improve a given code,
 
 Let me give you a very practical answer here:
 
-If the algorithm you strive to improve is one of the well-known, well-researched algorithms, the chances to find an equivalent, yet unknown, algorithm in a better complexity class is roughly zero. If you do find one, you are the hero of the day.
+If the algorithm you strive to improve is one of the well-known, well-researched algorithms, the chances to find an equivalent, yet unknown, algorithm in a better complexity class is roughly zero. If you do find one, you are the hero of the day.kkkk
 
 If, on the other hand, you are looking at some piece of lousy home-grown code, hacked together quickly while recovering from a severe hangover, then your chances aren't that bad. Read on...
 
@@ -343,6 +358,8 @@ Time complexity and Big-O classes might seem tedious stuff but are enormously us
 [Wikipedia: Time complexity](https://en.wikipedia.org/wiki/Time_complexity)
 
 [Wikipedia: Big O notation](https://en.wikipedia.org/wiki/Big_O_notation)
+
+All but the first three graphs were created with the wonderful [Desmos online graph calculator](https://www.desmos.com/calculator).
 
 **Happy coding!**
 
