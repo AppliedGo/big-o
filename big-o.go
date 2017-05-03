@@ -264,7 +264,7 @@ Looking at some of the curves, one question arises: Can we improve a given code,
 
 Let me give you a very practical answer here:
 
-If the algorithm you strive to improve is one of the well-known, well-researched algorithms, the chances to find an equivalent, yet unknown, algorithm in a better complexity class is roughly zero. If you do find one, you are the hero of the day.kkkk
+If the algorithm you strive to improve is one of the well-known, well-researched algorithms, the chances to find an equivalent, yet unknown, algorithm in a better complexity class is roughly zero. If you do find one, you are the hero of the day.
 
 If, on the other hand, you are looking at some piece of lousy home-grown code, hacked together quickly while recovering from a severe hangover, then your chances aren't that bad. Read on...
 
