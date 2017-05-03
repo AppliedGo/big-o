@@ -343,7 +343,7 @@ Other strategies include [ant colony optimization](https://en.wikipedia.org/wiki
 
 Given that goroutines can execute in parallel (provided that more than one (physical) CPU core is available), a question comes to mind: Can a parallel version of an algorithm belong to a better complexity class than the original serial algorithm?
 
-For example, could the TSP be solved in `O(n^2)` rather than in `O(n^2)` (while still using an exact algorithm and no heuristics)?
+For example, could the TSP be solved in `O(n^2)` rather than in `O(2^n)` (while still using an exact algorithm and no heuristics)?
 
 Unfortunately, no.
 
