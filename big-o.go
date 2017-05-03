@@ -363,4 +363,9 @@ All but the first three graphs were created with the wonderful [Desmos online gr
 
 **Happy coding!**
 
+- - -
+
+Erratum
+
+2017-05-03 Typo: "kkkk"
 */
