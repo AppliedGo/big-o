@@ -282,7 +282,12 @@ A good sort algorithm takes O(n*log(n)) time but reduces the time for each of th
 
 Sometimes it pays off inspecting the way your input data is stored.
 
-Example: Inserting a new value into a sorted linear list takes `O(n*log(n))` time: `O(log(n)` time to find the right cell, and `O(n)` time to shift all subsequent cells by one cell. (Note we are talking about average times here, in individual cases, these operations may take less time. E.g., if the new value is inserted at the end, there is nothing to shift.)
+Example: Inserting a new value into a sorted linear list takes `O(n)` time, as all values after the newly inserted one have to be shifted by one cell.
+
+(Note we are talking about average times here, in individual cases, these operations may take less time. E.g., if the new value is inserted at the end, there is nothing to shift.)
+
+(And another note: You may point out that finding the right place for inserting takes also some time, and for a sorted linear list, this would be `O(log(n))` when using binary search, so the exact formula would be `O(n + log(n))`; however, as we have seen in the section "Simplifying the term", using the most influential term of the sum is sufficient. In this scenario, this is `n`.)
+
 
 If you insert new data very frequently, better turn this list into a balanced tree. Then inserting a new value only takes `O(log(n))` time. (Remember, `log(n)` is about the height of a balanced binary tree.)
 
@@ -362,5 +367,11 @@ Time complexity and Big-O classes might seem tedious stuff but are enormously us
 All but the first three graphs were created with the wonderful [Desmos online graph calculator](https://www.desmos.com/calculator).
 
 **Happy coding!**
+
+- - -
+
+Errata
+
+2017-07-02: Fix the example in "Change your data structure".
 
 */
