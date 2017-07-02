@@ -286,7 +286,7 @@ Example: Inserting a new value into a sorted linear list takes `O(n)` time, as a
 
 (Note we are talking about average times here, in individual cases, these operations may take less time. E.g., if the new value is inserted at the end, there is nothing to shift.)
 
-(And another note: You may point out that finding the right place for inserting takes also some time, and for a sorted linear list, this would be `O(log(n))` when using binary search, so the exact formula would be `O(n + log(n))`; however, as we have seen in the section "Simplifying the term", using the most influential term of the sum is sufficient. In this scenario, this is `n`.)
+(And another note: You may point out that finding the right place for inserting takes also some time, and for a sorted linear list, this would be `O(log(n))` when using binary search, so the exact formula would be `O(n + log(n))`; however, as we have seen in the section "Simplifying the term", using the most influential term of the sum is sufficient. In this scenario, this term is `n`.)
 
 
 If you insert new data very frequently, better turn this list into a balanced tree. Then inserting a new value only takes `O(log(n))` time. (Remember, `log(n)` is about the height of a balanced binary tree.)
