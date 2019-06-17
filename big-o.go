@@ -25,9 +25,9 @@ author = "Christoph Berger"
 email = "chris@appliedgo.net"
 date = "2017-05-01"
 draft = "false"
-domains = ["Algorithms And Data Structures"]
+categories = ["Algorithms And Data Structures"]
 tags = ["Performance", "Big-O", "Optimization"]
-categories = ["Tutorial"]
+articletypes = ["Tutorial"]
 +++
 
 You worked hard to save a few CPU cycles in the central loop, but your code is still slow? Time to think about the time complexity of your algorithm.
