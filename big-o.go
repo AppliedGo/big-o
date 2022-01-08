@@ -1,3 +1,5 @@
+package main
+
 /*
 <!--
 Copyright (c) 2017 Christoph Berger. Some rights reserved.
