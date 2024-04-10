@@ -78,7 +78,7 @@ loop
 end
 ```
 
-Finally, the code inserts each item into a [binary search tree](https://appliedgo.net/bintree) that is [balanced](https://appliedgo.net/balancedtree/). Each insert takes about `log(n+1)` units of time (the height of a tree of `n` items is `log(n+1)`), so all inserts take `n*log(n+1)` units of time. ("`log`" here means the logarithm to base 2.)
+Finally, the code inserts each item into a [binary search tree]({{< ref "/bintree" >}}) that is [balanced]({{< ref "/balancedtree/" >}}). Each insert takes about `log(n+1)` units of time (the height of a tree of `n` items is `log(n+1)`), so all inserts take `n*log(n+1)` units of time. ("`log`" here means the logarithm to base 2.)
 
 ```
 loop
